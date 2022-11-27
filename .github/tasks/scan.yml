@@ -1,0 +1,7 @@
+---
+version: "3"
+
+tasks:
+  scan:
+    cmds:
+      - .venv/bin/tartufo scan-local-repo .

@@ -1,0 +1,14 @@
+---
+version: "3"
+
+includes:
+  os: os/Taskfile_{{OS}}.yml
+
+tasks:
+  update:
+    deps:
+      - os:update
+      - update-pre-commit
+  update-pre-commit:
+    cmds:
+      - .venv/bin/pre-commit autoupdate --color never --freeze > /dev/null

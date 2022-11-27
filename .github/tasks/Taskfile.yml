@@ -1,0 +1,27 @@
+---
+version: "3"
+
+includes:
+  format: format.yml
+  lint: lint.yml
+  scan: scan.yml
+  setup: setup
+  update: update
+
+tasks:
+  setup:
+    cmds:
+      - task: update:os:update
+      - task: setup:setup
+  update:
+    cmds:
+      - task: update:update
+  lint:
+    cmds:
+      - task: lint:all
+  format:
+    cmds:
+      - task: format:all
+  scan:
+    cmds:
+      - task: scan:scan
