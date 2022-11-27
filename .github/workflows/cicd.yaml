@@ -1,0 +1,35 @@
+---
+on:
+  pull_request:
+    branches:
+      - main
+    # Only run when there are changes in the src/ images
+    paths:
+      - "src/**"
+  push:
+    branches:
+      - main
+    # Only run when there are changes in the src/ images
+    paths:
+      - "src/**"
+  workflow_dispatch:
+name: "Build and Push Images"
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image:
+          - default
+    steps:
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3
+      - uses: docker/build-push-action@b5a4c19c27d3a79bebe2b575f3b54f2c47a7c0df # v2.7.0
+        name: Build and Push Image - ${{ matrix.image }}
+        with:
+          push: true
+          context: "./src/${{ matrix.image }}"
+          tags: |
+            ghcr.io/${{ github.repository }}/${{ matrix.image }}:latest
+            ghcr.io/${{ github.repository }}/${{ matrix.image }}:${{ github.sha }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/${{ matrix.image }}:latest
+          cache-to: type=inline
