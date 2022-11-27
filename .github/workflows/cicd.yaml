@@ -5,7 +5,7 @@ on:
       - main
     # Only run when there are changes in the src/ images
     paths:
-      - "src/**"
+      - "images/**"
   workflow_dispatch:
 name: "Build and Push Images"
 jobs:
@@ -21,7 +21,7 @@ jobs:
         name: Build and Push Image - ${{ matrix.image }}
         with:
           push: true
-          context: "./src/${{ matrix.image }}"
+          context: "./images/${{ matrix.image }}"
           tags: |
             ghcr.io/${{ github.repository }}/${{ matrix.image }}:latest
             ghcr.io/${{ github.repository }}/${{ matrix.image }}:${{ github.sha }}
