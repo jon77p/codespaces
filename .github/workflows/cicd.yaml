@@ -1,11 +1,5 @@
 ---
 on:
-  pull_request:
-    branches:
-      - main
-    # Only run when there are changes in the src/ images
-    paths:
-      - "src/**"
   push:
     branches:
       - main
