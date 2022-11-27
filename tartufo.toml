@@ -56,6 +56,11 @@ pattern = 'image: .+@sha256:[a-zA-Z0-9]{40}'
 reason = 'SHAs in image references'
 
 [[tool.tartufo.exclude-entropy-patterns]]
+path-pattern = 'Dockerfile$'
+pattern = 'FROM .+@sha256:[a-zA-Z0-9]{40}'
+reason = 'SHAs in FROM image references'
+
+[[tool.tartufo.exclude-entropy-patterns]]
 path-pattern = '.terraform.lock.hcl$'
 pattern = '("h1:[a-zA-Z0-9+/=]{44}"|"zh:[a-fA-F0-9]{64}")'
 reason = 'hashes in Terraform lock files'
