@@ -7,7 +7,7 @@ Installs Tailscale and configures it to connect to your Tailscale network. Note:
 
 ```json
 "features": {
-    "ghcr.io/jon77p/codespaces/tailscale:1": {}
+    "ghcr.io/jon77p/codespaces/features/tailscale:1": {}
 }
 ```
 
