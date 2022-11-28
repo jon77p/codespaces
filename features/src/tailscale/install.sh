@@ -76,6 +76,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies if missing
 check_packages curl gpg dnsutils
+if ! type git > /dev/null 2>&1; then
+    check_packages git
+fi
 
 # Verify requested version is available, if not, use latest
 find_version_from_git_tags TAILSCALE_VERSION 'https://github.com/tailscale/tailscale' 'v'
