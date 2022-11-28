@@ -29,7 +29,7 @@ jobs:
           push: true
           context: "./images/${{ matrix.image }}"
           tags: |
-            ghcr.io/${{ github.repository }}/images/${{ matrix.image }}:-latest
+            ghcr.io/${{ github.repository }}/images/${{ matrix.image }}:latest
             ghcr.io/${{ github.repository }}/images/${{ matrix.image }}:${{ github.sha }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/images/${{ matrix.image }}:latest
           cache-to: type=inline
