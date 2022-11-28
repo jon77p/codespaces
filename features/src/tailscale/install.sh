@@ -97,7 +97,7 @@ tailscale_filename="tailscale_${TAILSCALE_VERSION}_${architecture}.tgz"
 curl -sSL -o ${tailscale_filename} https://pkgs.tailscale.com/stable/${tailscale_filename}
 
 # Unpack tailscale
-tar xzf ${TSFILE} --strip-components=1
+tar xzf ${tailscale_filename} --strip-components=1
 
 # Move tailscale binaries to /usr/local/bin/
 mv -f tailscaled /usr/local/bin/
