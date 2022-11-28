@@ -75,7 +75,7 @@ check_packages() {
 export DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies if missing
-check_packages curl gpg dnsutils
+check_packages curl ca-certificates gnupg2 coreutils dnsutils
 if ! type git > /dev/null 2>&1; then
     check_packages git
 fi
