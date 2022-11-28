@@ -1,6 +1,6 @@
 {
   "id": "tailscale",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Tailscale",
   "documentationUrl": "https://github.com/jon77p/codespaces/tree/main/features/tailscale",
   "description": "Installs Tailscale and configures it to connect to your Tailscale network. Note: You need to create a [Reusable Authkey](https://login.tailscale.com/admin/settings/authkeys) for your Tailnet and add it as a [Codespaces Secret](https://github.com/settings/codespaces) named `TAILSCALE_AUTHKEY`.",
@@ -12,7 +12,7 @@
       "proposals": ["latest", "1.32.0", "1.26.1"]
     }
   },
-  "init": true,
   "privileged": true,
+  "entrypoint": "/usr/local/share/tailscaled-init.sh",
   "capAdd": ["NET_ADMIN", "NET_RAW"]
 }
