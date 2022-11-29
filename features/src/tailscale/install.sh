@@ -6,6 +6,7 @@ set -e
 rm -rf /var/lib/apt/lists/*
 
 TAILSCALE_VERSION="${VERSION:-"latest"}"
+FIX_ENVIRONMENT="${FIX_ENVIRONMENT:-"true"}"
 
 architecture="$(uname -m)"
 case ${architecture} in
