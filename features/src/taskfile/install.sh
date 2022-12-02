@@ -81,7 +81,7 @@ fi
 find_version_from_git_tags TASKFILE_VERSION 'https://github.com/go-task/task' 'v'
 
 # Run Taskfile install script
-sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b ~/.local/bin "v${TASKFILE_VERSION}"
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b /usr/local/bin "v${TASKFILE_VERSION}"
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
