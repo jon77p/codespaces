@@ -71,8 +71,13 @@ check_packages() {
     fi
 }
 
+# Install dependencies if missing
+if ! type git > /dev/null 2>&1; then
+    check_packages git
+fi
+
 # Verify requested version is available, if not, use latest
-find_version_from_git_tags TAILSCALE_VERSION 'https://github.com/tailscale/tailscale' 'v'
+find_version_from_git_tags TASKFILE_VERSION 'https://github.com/go-task/task' 'v'
 
 # Run Taskfile install script
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -b ~/.local/bin "${TASKFILE_VERSION}"
