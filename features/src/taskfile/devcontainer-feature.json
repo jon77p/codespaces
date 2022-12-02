@@ -1,6 +1,6 @@
 {
   "id": "taskfile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Taskfile",
   "documentationUrl": "https://github.com/jon77p/codespaces/tree/main/features/taskfile",
   "description": "Installs Taskfile (https://taskfile.dev)",
