@@ -72,6 +72,7 @@ check_packages() {
 }
 
 # Install dependencies if missing
+check_packages curl ca-certificates
 if ! type git > /dev/null 2>&1; then
     check_packages git
 fi
