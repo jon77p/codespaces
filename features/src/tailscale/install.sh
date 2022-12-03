@@ -162,6 +162,7 @@ sudoIf()
     fi
 }
 EOF
+
 if [ "${FIX_ENVIRONMENT}" = "true" ]; then
     echo "${store_env_script}" >> /usr/local/share/tailscaled-init.sh
     echo "${restore_secrets_script}" > /etc/profile.d/00-restore-secrets.sh
@@ -171,6 +172,7 @@ if [ "${FIX_ENVIRONMENT}" = "true" ]; then
         echo -e "if [ -f /etc/profile.d/00-restore-secrets.sh ]; then . /etc/profile.d/00-restore-secrets.sh; fi\n$(cat /etc/zsh/zlogin 2>/dev/null || echo '')" > /etc/zsh/zlogin
     fi
 fi
+
 tee -a /usr/local/share/tailscaled-init.sh > /dev/null \
 << 'EOF'
 # ** Start tailscaled **
