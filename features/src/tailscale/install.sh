@@ -121,7 +121,10 @@ mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 store_env_script="$(cat << 'EOF'
 # Wire in codespaces secret processing to zsh if present (since may have been added to image after script was run)
 if [ -f  /etc/zsh/zlogin ] && ! grep '/etc/profile.d/00-restore-secrets.sh' /etc/zsh/zlogin > /dev/null 2>&1; then
-    echo -e "if [ -f /etc/profile.d/00-restore-secrets.sh ]; then . /etc/profile.d/00-restore-secrets.sh; fi\n$(cat /etc/zsh/zlogin 2>/dev/null || echo '')" | sudoIf tee /etc/zsh/zlogin > /dev/null
+    if [ -f /etc/profile.d/00-restore-secrets.sh ]; then
+        . /etc/profile.d/00-restore-secrets.sh
+    fi
+    $(cat /etc/zsh/zlogin 2>/dev/null || echo '')" | sudoIf tee /etc/zsh/zlogin > /dev/null
 fi
 EOF
 )"
@@ -146,7 +149,7 @@ export VSCDC_FIXED_SECRETS=true
 EOF
 )"
 
-# Write out a scripts that can be referenced as an ENTRYPOINT to auto-start sshd and fix login environments
+# Write out a script that can be referenced as an ENTRYPOINT to auto-start tailscaled
 tee /usr/local/share/tailscaled-init.sh > /dev/null \
 << 'EOF'
 #!/usr/bin/env bash
@@ -162,15 +165,23 @@ sudoIf()
     fi
 }
 EOF
+
 if [ "${FIX_ENVIRONMENT}" = "true" ]; then
     echo "${store_env_script}" >> /usr/local/share/tailscaled-init.sh
     echo "${restore_secrets_script}" > /etc/profile.d/00-restore-secrets.sh
     chmod +x /etc/profile.d/00-restore-secrets.sh
     # Wire in zsh if present
     if type zsh > /dev/null 2>&1; then
-        echo -e "if [ -f /etc/profile.d/00-restore-secrets.sh ]; then . /etc/profile.d/00-restore-secrets.sh; fi\n$(cat /etc/zsh/zlogin 2>/dev/null || echo '')" > /etc/zsh/zlogin
+        tee /etc/zsh/zlogin > /dev/null \
+<< 'EOF'
+if [ -f /etc/profile.d/00-restore-secrets.sh ]; then
+    . /etc/profile.d/00-restore-secrets.sh
+fi
+$(cat /etc/zsh/zlogin 2>/dev/null || echo '')"
+EOF
     fi
 fi
+
 tee -a /usr/local/share/tailscaled-init.sh > /dev/null \
 << 'EOF'
 # ** Start tailscaled **
