@@ -179,7 +179,6 @@ if [ "${FIX_ENVIRONMENT}" = "true" ]; then
 if [ -f /etc/profile.d/00-restore-secrets.sh ]; then
     . /etc/profile.d/00-restore-secrets.sh
 fi
-$(cat /etc/zsh/zlogin 2>/dev/null || echo '')
 EOF
 fi
 
