@@ -124,7 +124,7 @@ if [ -f  /etc/zsh/zlogin ] && ! grep '/etc/profile.d/00-restore-secrets.sh' /etc
     if [ -f /etc/profile.d/00-restore-secrets.sh ]; then
         . /etc/profile.d/00-restore-secrets.sh
     fi
-    $(cat /etc/zsh/zlogin 2>/dev/null || echo '')" | sudoIf tee /etc/zsh/zlogin > /dev/null
+    $(cat /etc/zsh/zlogin 2>/dev/null || echo '') | sudoIf tee /etc/zsh/zlogin > /dev/null
 fi
 EOF
 )"
@@ -187,6 +187,9 @@ tee -a /usr/local/share/tailscaled-init.sh > /dev/null \
 # ** Start tailscaled **
 sudoIf /etc/init.d/tailscaled start 2>&1 | sudoIf tee /tmp/tailscaled.log > /dev/null
 set +e
+
+# Execute whatever commands were passed in (if any). This allows us
+# to set this script to ENTRYPOINT while still executing the default CMD.
 exec "$@"
 EOF
 chmod +x /usr/local/share/tailscaled-init.sh
@@ -200,4 +203,4 @@ fi
 rm -rf /tmp/tailscale-downloads
 rm -rf /var/lib/apt/lists/*
 
-echo "Done!"
+echo "tailscale script has completed!"
