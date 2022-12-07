@@ -114,6 +114,9 @@ curl -sSL -o /etc/init.d/tailscaled https://raw.githubusercontent.com/tailscale/
 # Make sure tailscaled init.d script is executable
 chmod +x /etc/init.d/tailscaled
 
+# Patch tailscaled init.d script to use TAILSCALE_HOSTNAME instead
+sed -i "s/tailscale up/tailscale up --hostname ${TAILSCALE_HOSTNAME}/g" /etc/init.d/tailscaled
+
 # Create tailscale directories
 mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
@@ -170,16 +173,14 @@ if [ "${FIX_ENVIRONMENT}" = "true" ]; then
     echo "${store_env_script}" >> /usr/local/share/tailscaled-init.sh
     echo "${restore_secrets_script}" > /etc/profile.d/00-restore-secrets.sh
     chmod +x /etc/profile.d/00-restore-secrets.sh
-    # Wire in zsh if present
-    if type zsh > /dev/null 2>&1; then
-        tee /etc/zsh/zlogin > /dev/null \
+    tee -a /usr/local/share/tailscaled-init.sh > /dev/null \
 << 'EOF'
+# Make sure this current script gets codespaces secret processing
 if [ -f /etc/profile.d/00-restore-secrets.sh ]; then
     . /etc/profile.d/00-restore-secrets.sh
 fi
 $(cat /etc/zsh/zlogin 2>/dev/null || echo '')
 EOF
-    fi
 fi
 
 tee -a /usr/local/share/tailscaled-init.sh > /dev/null \
