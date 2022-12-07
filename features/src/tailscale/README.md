@@ -16,6 +16,7 @@ Installs Tailscale and configures it to connect to your Tailscale network. Note:
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
 | version | Tailscale version | string | latest |
+| tailscale_hostname | Tailscale hostname | string | codespaces |
 
 
 
