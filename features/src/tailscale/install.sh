@@ -5,7 +5,13 @@ set -e
 # Clean up old apt sources
 rm -rf /var/lib/apt/lists/*
 
+# Set codespace options
 TAILSCALE_VERSION="${VERSION:-"latest"}"
+TAILSCALE_HOSTNAME_PREFIX="${HOSTNAME_PREFIX:-"codespaces-"}"
+TAILSCALE_TAGS="${TAGS:-""}"
+TAILSCALE_OPTIONS="${TAILSCALE_OPTIONS:-""}"
+
+# Other options
 FIX_ENVIRONMENT="${FIX_ENVIRONMENT:-"true"}"
 
 architecture="$(uname -m)"
@@ -114,8 +120,26 @@ curl -sSL -o /etc/init.d/tailscaled https://raw.githubusercontent.com/tailscale/
 # Make sure tailscaled init.d script is executable
 chmod +x /etc/init.d/tailscaled
 
+# Set TAILSCALE_HOSTNAME to prefix + hostname of container
+TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME_PREFIX}$(cat /etc/hostname)"
+
+# Create list of tailscale tags in format of "tag:value1,tag:value2"
+# Note: TAILSCALE_TAGS variable is a comma separated list of values and needs to have tag: prefix added
+TAILSCALE_TAGS=""
+if [ ! -z "${TAILSCALE_TAGS}" ]; then
+    for tag in $(echo "${TAILSCALE_TAGS}" | tr "," "\n"); do
+        TAILSCALE_TAGS="${TAILSCALE_TAGS}tag:${tag},"
+    done
+    TAILSCALE_TAGS="${TAILSCALE_TAGS::-1}"
+fi
+
+# If there are tags, add --advertise-tags before the tags
+if [ ! -z "${TAILSCALE_TAGS}" ]; then
+    TAILSCALE_TAGS="--advertise-tags ${TAILSCALE_TAGS}"
+fi
+
 # Patch tailscaled init.d script to use TAILSCALE_HOSTNAME instead
-sed -i "s/tailscale up/tailscale up --hostname ${TAILSCALE_HOSTNAME}/g" /etc/init.d/tailscaled
+sed -i "s/tailscale up/tailscale up --hostname ${TAILSCALE_HOSTNAME} ${TAILSCALE_TAGS} ${TAILSCALE_OPTIONS}/g" /etc/init.d/tailscaled
 
 # Create tailscale directories
 mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale

@@ -1,6 +1,6 @@
 {
   "id": "tailscale",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "name": "Tailscale",
   "documentationUrl": "https://github.com/jon77p/codespaces/tree/main/features/tailscale",
   "description": "Installs Tailscale and configures it to connect to your Tailscale network. Note: You need to create a [Reusable Authkey](https://login.tailscale.com/admin/settings/authkeys) for your Tailnet and add it as a [Codespaces Secret](https://github.com/settings/codespaces) named `TAILSCALE_AUTHKEY`.",
@@ -11,11 +11,22 @@
       "default": "latest",
       "proposals": ["latest", "1.32.0", "1.26.1"]
     },
-    "tailscale_hostname": {
+    "hostname_prefix": {
       "type": "string",
-      "description": "Tailscale hostname",
-      "default": "codespaces",
-      "proposals": ["codespaces"]
+      "description": "Tailscale hostname prefix",
+      "default": "codespaces-",
+      "proposals": ["codespaces-"]
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-delimited list of Tailscale tags to advertise",
+      "default": "codespaces"
+    },
+    "options": {
+      "type": "string",
+      "description": "Tailscale options",
+      "default": "",
+      "proposals": "--shields-up"
     }
   },
   "privileged": true,
