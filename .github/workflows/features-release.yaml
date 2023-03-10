@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
 
       - name: "Publish Features"
-        uses: devcontainers/action@ea0d7f7524056470e916984f88a0fa9c97210ed1 # v1
+        uses: devcontainers/action@79f4dee22a716245ebe89961ea56744a00741992 # v1
         with:
           publish-features: "true"
           base-path-to-features: "./features/src"
