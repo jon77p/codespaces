@@ -4,4 +4,4 @@ yamllint==1.35.1
 ansible==9.4.0
 ansible-lint==24.2.2
 jmespath==1.0.1
-pylint-venv==2.3.0
+pylint-venv==3.0.3
