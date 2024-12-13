@@ -1,1 +1,1 @@
-FROM mcr.microsoft.com/devcontainers/universal:linux@sha256:c82a43c0c7434e252cc4e53e8ff4c55b26eece7a3a17093d04a2fca76995a041
+FROM mcr.microsoft.com/devcontainers/universal:linux@sha256:f192431c7e5a13e7570557366097fd9fad92fba37db1dee43986f1e957839bd3
