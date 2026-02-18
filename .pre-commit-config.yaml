@@ -74,7 +74,7 @@ repos:
     hooks:
       - id: gitleaks
   - repo: https://github.com/godaddy/tartufo
-    rev: 81115e0ef3667882bfaae8f034ce33dcd36effbe # frozen: v3.3.1
+    rev: c5fbbf59c65411152afba79fba6509fb8c030c6d # frozen: v6.0.0
     hooks:
       - id: tartufo
         args: [pre-commit]
