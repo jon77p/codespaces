@@ -119,7 +119,7 @@ repos:
       - id: tfsec
   # Ansible-related hooks
   - repo: https://github.com/ansible-community/ansible-lint.git
-    rev: 24ac1cdb1ae30a273a844ac869fadd8d7b544ef5 # frozen: v6.22.2
+    rev: 7f6abc5ef97d0fb043a0f3d416dfbc74399fbda0 # frozen: v26.1.1
     hooks:
       - id: ansible-lint
         args: [-c, .ansible-lint.yml]
