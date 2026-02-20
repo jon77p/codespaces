@@ -80,7 +80,7 @@ repos:
         args: [pre-commit]
   # Python-related hooks
   - repo: https://github.com/pycqa/pylint
-    rev: dade880a65386de8c4e0f88e464d8dc573457133 # frozen: v2.17.7
+    rev: 88e1ab7545a4af4aea15c305a154c164a95ab842 # frozen: v4.0.5
     hooks:
       - id: pylint
         args: ["-rn", "-sn", "--rcfile=.github/lint/.pylintrc"]
