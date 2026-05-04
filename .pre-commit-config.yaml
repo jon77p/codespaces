@@ -25,7 +25,7 @@ repos:
       - id: trailing-whitespace
         exclude: .md
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 13614ab716a3113145f1294ed259d9fbe5678ff3 # frozen: 0.37.1
+    rev: f805888065fdb6162e1f800e50bb9460cbd223d6 # frozen: 0.37.2
     hooks:
       - id: check-dependabot
       - id: check-github-actions
@@ -61,7 +61,7 @@ repos:
         args: [--config-file, .github/lint/.yamllint.yaml]
   # Secrets-related hooks
   - repo: https://github.com/gitguardian/gg-shield
-    rev: 48630d5d474114c420ce295214a52bd8aefd79c2 # frozen: v1.50.0
+    rev: 887cfae8f31533a243e53f14cbec78781b67c4a6 # frozen: v1.50.3
     hooks:
       - id: ggshield
         args: [secret, scan, pre-commit]
