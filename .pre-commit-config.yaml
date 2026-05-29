@@ -33,7 +33,7 @@ repos:
       - id: check-renovate
   # General Linting-related hooks
   - repo: https://github.com/markdownlint/markdownlint
-    rev: 6a63be82e63a96cc8a0ba48abdbed819025ef233 # frozen: v0.15.0
+    rev: 7b84ed7c94af703880f91b24f64a2f8a5c3fd0ca # frozen: v0.16.0
     hooks:
       - id: markdownlint
         args:
