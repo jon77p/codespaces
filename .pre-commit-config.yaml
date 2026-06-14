@@ -25,7 +25,7 @@ repos:
       - id: trailing-whitespace
         exclude: .md
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: f805888065fdb6162e1f800e50bb9460cbd223d6 # frozen: 0.37.2
+    rev: 5030dca3047414c338091455ac41803200ec1f0f # frozen: 0.37.3
     hooks:
       - id: check-dependabot
       - id: check-github-actions
@@ -33,7 +33,7 @@ repos:
       - id: check-renovate
   # General Linting-related hooks
   - repo: https://github.com/markdownlint/markdownlint
-    rev: 7b84ed7c94af703880f91b24f64a2f8a5c3fd0ca # frozen: v0.16.0
+    rev: 6436a02d68bb6f164099b25138a6a4e6268b8730 # frozen: v0.17.0
     hooks:
       - id: markdownlint
         args:
@@ -80,7 +80,7 @@ repos:
         args: [pre-commit]
   # Python-related hooks
   - repo: https://github.com/pycqa/pylint
-    rev: 88e1ab7545a4af4aea15c305a154c164a95ab842 # frozen: v4.0.5
+    rev: 8a396357098337ba8be714fffdf2d00947a9778c # frozen: v4.0.6
     hooks:
       - id: pylint
         args: ["-rn", "-sn", "--rcfile=.github/lint/.pylintrc"]
