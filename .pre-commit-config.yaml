@@ -126,6 +126,6 @@ repos:
         files: "^ansible/"
   # Docker-related hooks
   - repo: https://github.com/hadolint/hadolint
-    rev: c749f8e908a86c18237ee631cddab5d4444ebddb # frozen: v2.15.0
+    rev: f177f71e7bf435eacc344754b8acde98a6186df7 # frozen: v2.15.0
     hooks:
       - id: hadolint-docker
