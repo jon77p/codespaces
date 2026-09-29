@@ -74,13 +74,13 @@ repos:
     hooks:
       - id: gitleaks
   - repo: https://github.com/godaddy/tartufo
-    rev: c5fbbf59c65411152afba79fba6509fb8c030c6d # frozen: v6.0.0
+    rev: 869cb428eaea3a5ef90082a7a3054d9080183807 # frozen: v6.0.1
     hooks:
       - id: tartufo
         args: [pre-commit]
   # Python-related hooks
   - repo: https://github.com/pycqa/pylint
-    rev: 303703fe107fa812c42a66edfc88a5702a63f1f1 # frozen: v4.0.9
+    rev: fdb12bcac060e9c5f03658ae4422d0343db41de9 # frozen: v4.0.10
     hooks:
       - id: pylint
         args: ["-rn", "-sn", "--rcfile=.github/lint/.pylintrc"]
