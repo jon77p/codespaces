@@ -80,7 +80,7 @@ repos:
         args: [pre-commit]
   # Python-related hooks
   - repo: https://github.com/pycqa/pylint
-    rev: 8c6daca55b8526ea9060303daacd8b6cb36961b6 # frozen: v4.1.1
+    rev: 40be3a2f729cdf667eae46272369aeffe1abf651 # frozen: v4.1.2
     hooks:
       - id: pylint
         args: ["-rn", "-sn", "--rcfile=.github/lint/.pylintrc"]
@@ -95,7 +95,7 @@ repos:
             --no-strict-optional,
           ]
   - repo: https://github.com/psf/black
-    rev: 87928e6d6761a4a6d22250e1fee5601b3998086e # frozen: 26.5.1
+    rev: 4f1883b1f15305a0e83a7c87991f46292bf09f85 # frozen: 26.10.0
     hooks:
       - id: black
   # Golang-related hooks
