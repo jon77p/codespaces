@@ -80,7 +80,7 @@ repos:
         args: [pre-commit]
   # Python-related hooks
   - repo: https://github.com/pycqa/pylint
-    rev: 40be3a2f729cdf667eae46272369aeffe1abf651 # frozen: v4.1.2
+    rev: e75de10c69103381c875601f638d4b977ff0fcaf # frozen: v4.1.3
     hooks:
       - id: pylint
         args: ["-rn", "-sn", "--rcfile=.github/lint/.pylintrc"]
@@ -119,7 +119,7 @@ repos:
       - id: tfsec
   # Ansible-related hooks
   - repo: https://github.com/ansible-community/ansible-lint.git
-    rev: e7f397ad6dfa20d274afa17cd7bbedd84ed136f5 # frozen: v26.9.0
+    rev: 9bce2bfb8f4a984e6b13767bc0d6bf0a49492164 # frozen: v26.10.1
     hooks:
       - id: ansible-lint
         args: [-c, .ansible-lint.yml]
